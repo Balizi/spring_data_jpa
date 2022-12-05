@@ -3,11 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Product</title>
+    <title>Saerch</title>
 </head>
 <body>
 <%
-    List<Product> productList = (List<Product>) request.getAttribute("listProduit");
+    List<Product> productList = (List<Product>) request.getAttribute("productList");
 %>
     <div align="center">
         <h1>${message}</h1>
@@ -15,7 +15,7 @@
             <input type="text" name="id"/>
             <input type="submit" value="search"/>
         </form>
-        <h3><a href="new">Add New Product</a></h3>
+        <h3><a href="new">Search Product</a></h3>
         <table border="1" padding="5">
             <tr>
                 <td>ID</td>

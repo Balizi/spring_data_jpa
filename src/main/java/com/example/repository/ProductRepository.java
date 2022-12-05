@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
-    @Query(value = "SELECT p FROM Product p WHERE p.id = :keyboard")
-    List<Product> serach(@Param("keyboard") Long keyboard);
+    @Query(value = "SELECT p FROM Product p WHERE p.id = :id")
+    List<Product> serach(@Param("id") Long id);
 }
