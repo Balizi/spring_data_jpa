@@ -1,16 +1,11 @@
-<%@ page import="com.example.model.Product" %>
-<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Product</title>
 </head>
 <body>
-<%
-    List<Product> productList = (List<Product>) request.getAttribute("listProduit");
-%>
     <div align="center">
-        <h1>${message}</h1>
         <form method="get" action="search">
             <input type="text" name="id"/>
             <input type="submit" value="search"/>
@@ -24,18 +19,18 @@
                 <td>Quantite</td>
                 <td>Action</td>
             </tr>
-            <% for (Product p:productList ) {%>
+            <c:forEach items="${listProduit}" var="p">
                 <tr>
-                    <td><%=p.getId()%></td>
-                    <td><%=p.getDesignantion()%></td>
-                    <td><%=p.getPrix()%></td>
-                    <td><%=p.getQuantite()%></td>
+                    <td>${p.id}</td>
+                    <td>${p.designantion}</td>
+                    <td>${p.prix}</td>
+                    <td>${p.quantite}</td>
                     <td>
-                        <a href="edit?id=<%=p.getId()%>">Edit</a>&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<%=p.getId()%>">Delete</a>
+                        <a href="edit?id=${p.id}">Edit</a>&nbsp;&nbsp;&nbsp;
+                        <a href="delete?id=${p.id}">Delete</a>
                     </td>
                 </tr>
-            <%}%>
+            </c:forEach>
         </table>
     </div>
 </body>

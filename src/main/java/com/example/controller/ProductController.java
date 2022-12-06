@@ -4,15 +4,12 @@ import com.example.model.Product;
 import com.example.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 public class ProductController {
@@ -20,14 +17,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
-    @GetMapping(value = "/" ,produces = "application/json")
-    public ModelAndView home(HttpServletRequest request){
+    @GetMapping(value = "/")
+    public ModelAndView home(){
         ModelAndView mv = new ModelAndView("/index");
         List<Product> listProduits = productService.getAllProduct();
         mv.addObject("listProduit",listProduits);
-        request.setAttribute("listProduit",listProduits);
-        System.out.println("hello");
         for (Product p:listProduits) {
             System.out.println(p.toString());
         }
@@ -63,11 +57,10 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ModelAndView search(HttpServletRequest request, @RequestParam(defaultValue = "0") Long id){
+    public ModelAndView search(@RequestParam(defaultValue = "0") Long id){
         ModelAndView mv = new ModelAndView("search");
         List<Product> productList = productService.getPro(id);
-        mv.addObject("result",productList);
-        request.setAttribute("productList",productList);
+        mv.addObject("listProduit",productList);
         return mv;
     }
 
